@@ -6,6 +6,8 @@ import OrderCardSkeleton from "./OrderCardSkeleton";
 import AdminOrderCardSkeleton from "./AdminOrderCardSkeleton";
 import AdminUserCardSkeleton from "./AdminUserCardSkeleton";
 import PointCardSkeleton from "./PointCardSkeleton";
+import EssayCardSkeleton from "./EssayCardSkeleton";
+import PhaseCardSkeleton from "./PhaseCardSkeleton";
 
 export {
     TwoPartCardSkeleton,
@@ -17,4 +19,6 @@ export {
     AdminOrderCardSkeleton,
     AdminUserCardSkeleton,
     PointCardSkeleton,
+    EssayCardSkeleton,
+    PhaseCardSkeleton,
 }

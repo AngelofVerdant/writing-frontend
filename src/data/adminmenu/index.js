@@ -82,6 +82,16 @@ export const adminMenu = [
         name: "Why Us",
         link: "points"
       },
+      {
+        id: 3,
+        name: "What We Write",
+        link: "essays"
+      },
+      {
+        id: 4,
+        name: "Phases Involved",
+        link: "phases"
+      },
     ],
   },
 ];
