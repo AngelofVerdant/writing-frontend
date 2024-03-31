@@ -5,6 +5,7 @@ import PaperTypeCardSkeleton from "./PaperTypeCardSkeleton";
 import OrderCardSkeleton from "./OrderCardSkeleton";
 import AdminOrderCardSkeleton from "./AdminOrderCardSkeleton";
 import AdminUserCardSkeleton from "./AdminUserCardSkeleton";
+import PointCardSkeleton from "./PointCardSkeleton";
 
 export {
     TwoPartCardSkeleton,
@@ -15,4 +16,5 @@ export {
     OrderCardSkeleton,
     AdminOrderCardSkeleton,
     AdminUserCardSkeleton,
+    PointCardSkeleton,
 }

@@ -4,6 +4,7 @@ import PaperTypeFilter from "./PaperTypeFilter";
 import OrderFilter from "./OrderFilter";
 import AdminOrderFilter from "./AdminOrderFilter";
 import AdminUserFilter from "./AdminUserFilter";
+import PointFilter from "./PointFilter";
 
 export {
     LevelFilter,
@@ -12,4 +13,5 @@ export {
     OrderFilter,
     AdminOrderFilter,
     AdminUserFilter,
+    PointFilter,
 }

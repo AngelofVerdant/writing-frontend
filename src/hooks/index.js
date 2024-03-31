@@ -44,6 +44,7 @@ import useAdminOrderList from "./useAdminOrderList";
 import useAdminUserList from "./useAdminUserList";
 import useFetchResourceOne from "./useFetchResourceOne";
 import useResourceUpdateOne from "./useResourceUpdateOne";
+import usePointList from "./usePointList";
 
 
 export {
@@ -82,4 +83,5 @@ export {
     useAdminUserList,
     useFetchResourceOne,
     useResourceUpdateOne,
+    usePointList,
 }

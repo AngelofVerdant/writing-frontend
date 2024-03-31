@@ -77,6 +77,11 @@ export const adminMenu = [
         name: "Achievements",
         link: "achievements"
       },
+      {
+        id: 2,
+        name: "Why Us",
+        link: "points"
+      },
     ],
   },
 ];
