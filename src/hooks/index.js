@@ -42,6 +42,8 @@ import usePaperTypeList from "./usePaperTypeList";
 import useOrderList from "./useOrderList";
 import useAdminOrderList from "./useAdminOrderList";
 import useAdminUserList from "./useAdminUserList";
+import useFetchResourceOne from "./useFetchResourceOne";
+import useResourceUpdateOne from "./useResourceUpdateOne";
 
 
 export {
@@ -78,4 +80,6 @@ export {
     useOrderList,
     useAdminOrderList,
     useAdminUserList,
+    useFetchResourceOne,
+    useResourceUpdateOne,
 }

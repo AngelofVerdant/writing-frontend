@@ -66,4 +66,17 @@ export const adminMenu = [
       },
     ],
   },
+  {
+    id: 5,
+    name: 'Settings',
+    link: 's',
+    first: 'achievements',
+    options: [
+      {
+        id: 1,
+        name: "Achievements",
+        link: "achievements"
+      },
+    ],
+  },
 ];
