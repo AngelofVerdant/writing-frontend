@@ -143,7 +143,7 @@ export default function EditUser() {
                     title={`Access`}
                     checked={formData.adminstatus}
                     change={handleChange}
-                    disabled={true}
+                    disabled={false}
                 />
             </FlexItemWrapper>
             <FlexItemWrapper width={`md:w-1/2`}>

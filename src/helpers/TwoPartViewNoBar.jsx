@@ -8,7 +8,7 @@ const TwoPartViewNoBar = ({ title1, title2 }) => {
         darkMode
           ? 'bg-gray-800 text-white border border-gray-700'
           : 'bg-gray-200 text-gray-700 border border-gray-300'
-      } rounded-md py-2`}>
+      } rounded-md py-6`}>
       <div className={`w-1/3 px-4 text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
         {title1}
       </div>

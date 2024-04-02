@@ -4,7 +4,7 @@ import { dashboard } from '@/assets';
 import { useFetchResourceOne } from '@/hooks';
 
 export default function CustomerOverview() {
-  const { data: dataFetchedStats } = useFetchResourceOne('orders/user-stats');
+  const { data: dataFetchedStats } = useFetchResourceOne('orders/worker-stats');
 
   return (
     <ContainerWrapper>
@@ -27,22 +27,6 @@ export default function CustomerOverview() {
                           title1={`Orders`}
                           title2={dataFetchedStats.data.orderVolume}
                       />
-                  </FlexItemWrapper>
-                )}
-                {dataFetchedStats.data.orderPaymentStatus && (
-                  <FlexItemWrapper width={`md:w-1/3`}>
-                    <TwoPartViewNoBar 
-                      title1={`Paid`}
-                      title2={`${dataFetchedStats.data.orderPaymentStatus.paid}%`}
-                    />
-                  </FlexItemWrapper>
-                )}
-                {dataFetchedStats.data.orderPaymentStatus && (
-                  <FlexItemWrapper width={`md:w-1/3`}>
-                    <TwoPartViewNoBar 
-                      title1={`Unpaid`}
-                      title2={`${dataFetchedStats.data.orderPaymentStatus.unpaid}%`}
-                    />
                   </FlexItemWrapper>
                 )}
                 {dataFetchedStats.data.orderStatusDistribution && dataFetchedStats.data.orderStatusDistribution.map((status, index) => (

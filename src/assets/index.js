@@ -10,6 +10,7 @@ import paper from './paper.png';
 import papertype from './papertype.png';
 import order from './order.png';
 import users from './users.png';
+import dashboard from './dashboard.png';
 
 
 export {
@@ -25,4 +26,5 @@ export {
     papertype,
     order,
     users,
+    dashboard,
 };

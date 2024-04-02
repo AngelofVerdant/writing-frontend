@@ -120,22 +120,46 @@ const Navbar = () => {
               )}
               {userInfo?.user?.accessToken ? (
                 <GroupAbsoluteWrapper>
-                  <Link href="/user/o/overview">
-                    <GroupAbsoluteViewAndIcon>
-                      Dashboard
-                      <GroupAbsoluteInnerIcon>
-                        <IconRight className={`h-5 w-5`}/>
-                      </GroupAbsoluteInnerIcon>
-                    </GroupAbsoluteViewAndIcon>
-                  </Link>
-                  <Link href="/user/o/orders">
-                    <GroupAbsoluteViewAndIcon>
-                      My Orders
-                      <GroupAbsoluteInnerIcon>
-                        <IconRight className={`h-5 w-5`}/>
-                      </GroupAbsoluteInnerIcon>
-                    </GroupAbsoluteViewAndIcon>
-                  </Link>
+                  {decodedUser?.iscustomer && (
+                    <Link href="/user/o/overview">
+                      <GroupAbsoluteViewAndIcon>
+                        Dashboard (c)
+                        <GroupAbsoluteInnerIcon>
+                          <IconRight className={`h-5 w-5`}/>
+                        </GroupAbsoluteInnerIcon>
+                      </GroupAbsoluteViewAndIcon>
+                    </Link>
+                  )}
+                  {decodedUser?.iswriter && (
+                    <Link href="/writer/w/overview">
+                      <GroupAbsoluteViewAndIcon>
+                        Dashboard (w)
+                        <GroupAbsoluteInnerIcon>
+                          <IconRight className={`h-5 w-5`}/>
+                        </GroupAbsoluteInnerIcon>
+                      </GroupAbsoluteViewAndIcon>
+                    </Link>
+                  )}
+                  {decodedUser?.iscustomer && (
+                    <Link href="/user/o/orders">
+                      <GroupAbsoluteViewAndIcon>
+                        My Orders
+                        <GroupAbsoluteInnerIcon>
+                          <IconRight className={`h-5 w-5`}/>
+                        </GroupAbsoluteInnerIcon>
+                      </GroupAbsoluteViewAndIcon>
+                    </Link>
+                  )}
+                  {decodedUser?.iswriter && (
+                    <Link href="/writer/w/assignments">
+                      <GroupAbsoluteViewAndIcon>
+                        Assignments
+                        <GroupAbsoluteInnerIcon>
+                          <IconRight className={`h-5 w-5`}/>
+                        </GroupAbsoluteInnerIcon>
+                      </GroupAbsoluteViewAndIcon>
+                    </Link>
+                  )}
                   <GroupSeparatorView />
                   <Link href="#" onClick={signoutHandler}>
                     <GroupAbsoluteViewAndIcon>

@@ -91,4 +91,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default RoleProtection(['customer'])(Layout);
+export default RoleProtection(['writer'])(Layout);
