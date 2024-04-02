@@ -55,14 +55,14 @@ export const adminMenu = [
   },
   {
     id: 4,
-    name: 'Content',
-    link: 'a',
-    first: 'blog',
+    name: 'Blog Posts',
+    link: 'p',
+    first: 'posts',
     options: [
       {
         id: 1,
-        name: "Blog",
-        link: "blog"
+        name: "Blog Posts",
+        link: "posts"
       },
     ],
   },

@@ -47,6 +47,7 @@ import useResourceUpdateOne from "./useResourceUpdateOne";
 import usePointList from "./usePointList";
 import useEssayList from "./useEssayList";
 import usePhaseList from "./usePhaseList";
+import usePostList from "./usePostList";
 
 
 export {
@@ -88,4 +89,5 @@ export {
     usePointList,
     useEssayList,
     usePhaseList,
+    usePostList,
 }

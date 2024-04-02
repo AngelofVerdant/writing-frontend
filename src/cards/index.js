@@ -7,6 +7,7 @@ import AdminUserCard from "./AdminUserCard";
 import PointCard from "./PointCard";
 import EssayCard from "./EssayCard";
 import PhaseCard from "./PhaseCard";
+import PostCard from "./PostCard";
 
 export {
     LevelCard,
@@ -18,4 +19,5 @@ export {
     PointCard,
     EssayCard,
     PhaseCard,
+    PostCard,
 }
