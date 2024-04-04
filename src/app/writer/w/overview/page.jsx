@@ -13,7 +13,7 @@ export default function CustomerOverview() {
         <FlexWrapper>
           <OverviewCard
             imageUrl={dashboard}
-            title="Dashboard (c)"
+            title="Dashboard (w)"
           />
         </FlexWrapper>
 
