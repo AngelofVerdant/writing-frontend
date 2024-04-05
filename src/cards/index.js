@@ -8,6 +8,7 @@ import PointCard from "./PointCard";
 import EssayCard from "./EssayCard";
 import PhaseCard from "./PhaseCard";
 import PostCard from "./PostCard";
+import AssignmentCard from "./AssignmentCard";
 
 export {
     LevelCard,
@@ -20,4 +21,5 @@ export {
     EssayCard,
     PhaseCard,
     PostCard,
+    AssignmentCard,
 }

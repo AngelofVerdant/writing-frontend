@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { IconLeft, IconRight, IconToggleOff, IconToggleOn } from '@/icons';
 import { RoleProtection } from '@/helpers';
 import { useDarkMode } from '@/state/DarkModeProvider';
-import { userMenu } from '@/data/usermenu';
+import { writerMenu } from '@/data/writerMenu';
 
 import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
@@ -51,7 +51,7 @@ const Layout = ({ children }) => {
                       className={`p-4 mb-2 mx-2 rounded cursor-pointer ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'}`}
                       key={submenu.id}
                     >
-                      <Link href={`/user/${selectedMenuDesktop.link}/${submenu.link}`}>
+                      <Link href={`/writer/${selectedMenuDesktop.link}/${submenu.link}`}>
                         <span className={`flex justify-between ml-0 text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-700'}`}>
                           {submenu.name}
                         </span>
@@ -61,7 +61,7 @@ const Layout = ({ children }) => {
                 </>
               ) : (
                 <div>
-                  {userMenu.map((menuItem) => (
+                  {writerMenu.map((menuItem) => (
                     <div
                       key={menuItem.id}
                       className={`p-4 mb-2 mx-2 rounded cursor-pointer ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'}`}

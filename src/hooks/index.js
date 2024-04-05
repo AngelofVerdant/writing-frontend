@@ -48,6 +48,7 @@ import usePointList from "./usePointList";
 import useEssayList from "./useEssayList";
 import usePhaseList from "./usePhaseList";
 import usePostList from "./usePostList";
+import useAssignmentList from "./useAssignmentList";
 
 
 export {
@@ -90,4 +91,5 @@ export {
     useEssayList,
     usePhaseList,
     usePostList,
+    useAssignmentList,
 }

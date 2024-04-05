@@ -8,6 +8,7 @@ import PointFilter from "./PointFilter";
 import EssayFilter from "./EssayFilter";
 import PhaseFilter from "./PhaseFilter";
 import PostFilter from "./PostFilter";
+import AssignmentFilter from "./AssignmentFilter";
 
 export {
     LevelFilter,
@@ -20,4 +21,5 @@ export {
     EssayFilter,
     PhaseFilter,
     PostFilter,
+    AssignmentFilter,
 }
