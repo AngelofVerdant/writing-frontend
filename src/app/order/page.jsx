@@ -74,8 +74,8 @@ export default function OrderWizard() {
             orderlanguage: stepData[4].paperlanguage,
             orderpages: stepData[5].paperpages,
             ordersources: stepData[5].papersources,
-            orderdefaultimage: stepData[6].paperdefaultimage,
-            orderimages: stepData[6].paperimages,
+            orderdefaultdocument: stepData[6].paperdefaultdocument,
+            orderdocuments: stepData[6].paperdocuments,
         };
         createResource(newResource, '/user/o/orders');
     };

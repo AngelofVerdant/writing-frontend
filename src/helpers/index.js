@@ -78,6 +78,7 @@ import NoImageOverviewCard from "./NoImageOverviewCard";
 import FooterActionViewExtended from "./FooterActionViewExtended";
 import CardWrapper from "./CardWrapper";
 import TwoPartViewNoBar from "./TwoPartViewNoBar";
+import DocumentUpload from "./DocumentUpload";
 
 export {
     Messages,
@@ -160,4 +161,5 @@ export {
     FooterActionViewExtended,
     CardWrapper,
     TwoPartViewNoBar,
+    DocumentUpload,
 }

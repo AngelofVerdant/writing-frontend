@@ -49,6 +49,8 @@ import useEssayList from "./useEssayList";
 import usePhaseList from "./usePhaseList";
 import usePostList from "./usePostList";
 import useAssignmentList from "./useAssignmentList";
+import useUploadDocument from "./useUploadDocument";
+import useDeleteDocument from "./useDeleteDocument";
 
 
 export {
@@ -92,4 +94,6 @@ export {
     usePhaseList,
     usePostList,
     useAssignmentList,
+    useUploadDocument,
+    useDeleteDocument,
 }

@@ -1,8 +1,8 @@
 'use client'
 import { PrimaryEditor } from '@/editor';
-import { ContainerWrapper, FlexItemWrapper, FlexWrapper, FooterActionView, HeaderActionView, LabelView, MediaUpload, Messages, NonFormWrapper, Spinner, TextInputView } from '@/helpers';
-import { useResourceSingle, useResourceUpdate, useUploadMedia } from '@/hooks';
-import { MediaModal } from '@/modals';
+import { ContainerWrapper, DocumentUpload, FlexItemWrapper, FlexWrapper, FooterActionView, HeaderActionView, LabelView, Messages, NonFormWrapper, Spinner, TextInputView } from '@/helpers';
+import { useResourceSingle, useResourceUpdate, useUploadDocument } from '@/hooks';
+import { DocumentModal } from '@/modals';
 import { useParams } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
 
@@ -22,8 +22,8 @@ export default function EditOrder() {
       orderstatus: '',
       orderpaymentstatus: '',
       orderprice: '',
-      orderdefaultimage: '',
-      orderimages: '',
+      orderdefaultdocument: '',
+      orderdocuments: '',
       initialContent: ''
     });
     
@@ -43,8 +43,8 @@ export default function EditOrder() {
           orderstatus: data.data.orderstatus?.title || '',
           orderpaymentstatus: data.data.orderpaymentstatus?.title || '',
           orderprice: data.data.orderprice || '',
-          orderdefaultimage: data.data.orderdefaultimage || {},
-          orderimages: data.data.orderimages || [],
+          orderdefaultdocument: data.data.orderdefaultdocument || {},
+          orderdocuments: data.data.orderdocuments || [],
           initialContent: data.data.orderdescription || ''
         });
         editorInstanceHandler();
@@ -63,23 +63,23 @@ export default function EditOrder() {
       setOrderDescription(content);
     };
 
-    const [limit, setLimit] = useState(50);
+    const [limit, setLimit] = useState(10);
     const {
         fileInputRef,
         data: dataUploaded,
-        defaultImage,
-        images,
-        setDefaultImage,
-        setImages,
+        documents,
+        defaultDocument,
+        setDefaultDocument,
+        setDocuments,
         handleFileInputChange,
         handleIconClick,
         isUploadDisabled,
-      } = useUploadMedia(limit, 'fertilizers');
+    } = useUploadDocument(limit, 'order-documents');
       
     useEffect(() => {
-      setDefaultImage(formData.orderdefaultimage || {});
-      setImages(formData.orderimages || []);
-    }, [formData.orderdefaultimage, formData.orderimages]);
+      setDefaultDocument(formData.orderdefaultdocument || {});
+      setDocuments(formData.orderdocuments || []);
+    }, [formData.orderdefaultdocument, formData.orderdocuments]);
       
     const [showModal, setShowModal] = useState(false);
 
@@ -92,8 +92,8 @@ export default function EditOrder() {
       e.preventDefault();
       const updateItem = {
           orderdescription: orderDescription,
-          orderdefaultimage: defaultImage,
-          orderimages: images,
+          orderdefaultdocument: defaultDocument,
+          orderdocuments: documents,
       };
       updateResource(updateItem, '/user/o/orders');
     };
@@ -255,19 +255,26 @@ export default function EditOrder() {
                 />
             </FlexItemWrapper>
             <FlexItemWrapper width={`md:w-1/2`}>
-              <MediaUpload
+              <DocumentUpload
                   handleFileInputChange={handleFileInputChange}
                   isUploadDisabled={isUploadDisabled}
                   dataUploaded={dataUploaded}
                   handleIconClick={handleIconClick}
-                  handleModalOpen={handleModalOpen}
                   fileInputRef={fileInputRef}
-                  defaultImage={defaultImage}
+                  handleModalOpen={handleModalOpen}
+                  defaultDocument={defaultDocument}
                   iconText={`Max Images (${limit})`}
               />
           </FlexItemWrapper>
           <FlexItemWrapper width={`md:w-1/1`}>
-              <MediaModal id="media" setDefaultImage={setDefaultImage} setImages={setImages} showModal={showModal} setShowModal={setShowModal} images={images} defaultImage={defaultImage} />
+            <DocumentModal
+                showModal={showModal}  
+                setShowModal={setShowModal}
+                documents={documents}
+                setDocuments={setDocuments}
+                defaultDocument={defaultDocument}
+                setDefaultDocument={setDefaultDocument}
+            />
           </FlexItemWrapper>
         </FlexWrapper>
 

@@ -1,12 +1,12 @@
 'use client'
-import { useEffect, useState } from 'react';
-import { FlexItemWrapper, FlexWrapper, MediaUpload } from '@/helpers';
-import { useUploadMedia } from '@/hooks';
-import { MediaModal } from '@/modals';
+import React, { useEffect, useState } from 'react';
+import { DocumentUpload, FlexItemWrapper, FlexWrapper } from '@/helpers';
+import { useUploadDocument } from '@/hooks';
+import { DocumentModal } from '@/modals';
 
 export default function DocumentStep({ stepIndex, stepperProps, stepData, setDocumentStepValid }) {
     const { setStepInputData } = stepperProps;
-    const { paperimages, paperdefaultimage } = stepData[stepIndex] || {};
+    const { paperdocuments, paperdefaultdocument } = stepData[stepIndex] || {};
 
     const handleStepperInput = (fieldName, value) => {
         const updatedStepData = [...stepData];
@@ -14,18 +14,18 @@ export default function DocumentStep({ stepIndex, stepperProps, stepData, setDoc
         setStepInputData(updatedStepData);
     };
 
-    const [limit, setLimit] = useState(20);
+    const [limit, setLimit] = useState(10);
     const {
         fileInputRef,
         data: dataUploaded,
-        defaultImage,
-        images,
-        setDefaultImage,
-        setImages,
+        documents,
+        defaultDocument,
+        setDefaultDocument,
+        setDocuments,
         handleFileInputChange,
         handleIconClick,
         isUploadDisabled,
-    } = useUploadMedia(limit, 'order-documents');
+    } = useUploadDocument(limit, 'order-documents');
 
     const [showModal, setShowModal] = useState(false);
 
@@ -33,23 +33,15 @@ export default function DocumentStep({ stepIndex, stepperProps, stepData, setDoc
         setShowModal(true);
     };
 
-    useEffect(() => {
-        handleStepperInput('paperimages', images);
-    }, [images, handleStepperInput]);
-
-    useEffect(() => {
-        handleStepperInput('paperdefaultimage', defaultImage);
-    }, [defaultImage, handleStepperInput]);
-
     const [validations, setValidations] = useState({
-        paperimages: true,
-        paperdefaultimage: true,
+        paperdocuments: true,
+        paperdefaultdocument: true,
     });
 
     const validateInputs = () => {
         const newValidations = {
-            paperimages: images.length > 0,
-            paperdefaultimage: !!defaultImage,
+            paperdocuments: documents.length > 0,
+            paperdefaultdocument: !!defaultDocument,
         };
 
         setValidations(newValidations);
@@ -59,32 +51,40 @@ export default function DocumentStep({ stepIndex, stepperProps, stepData, setDoc
     };
 
     useEffect(() => {
+        handleStepperInput('paperdocuments', documents);
+    }, [documents]);
+    
+    useEffect(() => {
+        handleStepperInput('paperdefaultdocument', defaultDocument);
+    }, [defaultDocument]);
+    
+    useEffect(() => {
         validateInputs();
-    }, [paperimages, paperdefaultimage, validateInputs]);
+    }, [documents, defaultDocument]);
+    
 
     return (
         <FlexWrapper>
             <FlexItemWrapper width={`md:w-1/2`}>
-                <MediaUpload
+                <DocumentUpload
                     handleFileInputChange={handleFileInputChange}
                     isUploadDisabled={isUploadDisabled}
                     dataUploaded={dataUploaded}
                     handleIconClick={handleIconClick}
-                    handleModalOpen={handleModalOpen}
                     fileInputRef={fileInputRef}
-                    defaultImage={defaultImage}
+                    handleModalOpen={handleModalOpen}
+                    defaultDocument={defaultDocument}
                     iconText={`Max Images (${limit})`}
                 />
             </FlexItemWrapper>
             <FlexItemWrapper width={`md:w-1/1`}>
-                <MediaModal
-                    id="media"
-                    setDefaultImage={setDefaultImage}
-                    setImages={setImages}
-                    showModal={showModal}
+                <DocumentModal
+                    showModal={showModal}  
                     setShowModal={setShowModal}
-                    images={images}
-                    defaultImage={defaultImage}
+                    documents={documents}
+                    setDocuments={setDocuments}
+                    defaultDocument={defaultDocument}
+                    setDefaultDocument={setDefaultDocument}
                 />
             </FlexItemWrapper>
         </FlexWrapper>
