@@ -1,5 +1,5 @@
 import { ButtonCustomView, FlexItemWrapper, InlineFlex, LabelView, Messages, ModalWrapper, Spinner } from "@/helpers";
-import { IconClose, IconDelete, IconSpinner } from "@/icons";
+import { IconCheck, IconClose, IconDelete, IconSpinner } from "@/icons";
 import { useDarkMode } from "@/state/DarkModeProvider";
 import { CardElement } from "@stripe/react-stripe-js"
 
@@ -49,7 +49,7 @@ export default function PaymentModal({ showModal, itemName, item, handlePayment,
                 {updateData.error && <Messages>{updateData.error}</Messages>}
             <div className="mt-1 mb-2">
               <FlexItemWrapper>
-                <LabelView name={`Confirm Payment`} forWhat={`text`} />
+                <LabelView name={`Card Details`} forWhat={`text`} />
               </FlexItemWrapper>
                 <CardElement options={CARD_OPTIONS}/>
             </div>
@@ -67,9 +67,9 @@ export default function PaymentModal({ showModal, itemName, item, handlePayment,
                 {updateData.loading ? (
                   <IconSpinner className={`h-5 w-5 text-xl`} />
                   ) : (
-                  <IconDelete title={`Delete Media`} className="h-5 w-5 text-xl" />
+                  <IconCheck title={`Pay`} className="h-5 w-5 text-xl" />
                 )}
-                <span>{`Delete`}</span>
+                <span>{`Pay`}</span>
               </ButtonCustomView>
             </InlineFlex>
           </div>

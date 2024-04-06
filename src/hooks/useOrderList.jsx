@@ -86,8 +86,8 @@ const useOrderList = (
       if(!error) {
         try {
           const { id } = paymentMethod;
-
           updateDispatch({ type: 'UPDATE_REQUEST' });
+
           const { data } = await axiosInstance.patch(`${BASE_URL}/orders/payment`,
             {
               orderId: item.id,

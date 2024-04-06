@@ -24,7 +24,7 @@ export default function CustomerOverview() {
                 {dataFetchedStats.data.orderVolume && (
                   <FlexItemWrapper width={`md:w-1/3`}>
                       <TwoPartViewNoBar 
-                          title1={`Orders`}
+                          title1={`Assignments`}
                           title2={dataFetchedStats.data.orderVolume}
                       />
                   </FlexItemWrapper>

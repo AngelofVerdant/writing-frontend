@@ -29,6 +29,7 @@ import { IconAdd } from "./IconAdd";
 import { IconMinus } from "./IconMinus";
 import { IconTransfer } from "./IconTransfer";
 import { IconCheck } from "./IconCheck";
+import { IconDownload } from "./IconDownload";
 
 
 export {
@@ -63,4 +64,5 @@ export {
     IconMinus,
     IconTransfer,
     IconCheck,
+    IconDownload,
 }
