@@ -12,8 +12,8 @@ export default function DocumentModal({ showModal, setShowModal, documents, setD
   };
 
   const { data: dataDeleted, deleteDocument } = useDeleteDocument('documents/remove');
-  const handleDelete = async (public_id) => {
-    await deleteDocument(public_id, documents, setDocuments, setDefaultDocument);
+  const handleDelete = async (asset_id) => {
+    await deleteDocument(asset_id, documents, setDocuments, setDefaultDocument);
     setSelectedDocument(null);
   };
 

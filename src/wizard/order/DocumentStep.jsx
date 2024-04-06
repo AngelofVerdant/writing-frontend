@@ -74,7 +74,7 @@ export default function DocumentStep({ stepIndex, stepperProps, stepData, setDoc
                     fileInputRef={fileInputRef}
                     handleModalOpen={handleModalOpen}
                     defaultDocument={defaultDocument}
-                    iconText={`Max Images (${limit})`}
+                    iconText={`Max Documents (${limit})`}
                 />
             </FlexItemWrapper>
             <FlexItemWrapper width={`md:w-1/1`}>

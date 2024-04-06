@@ -16,7 +16,7 @@ const useDeleteDocument = (resource) => {
   const deleteDocument = async (documentId, documents, setDocuments, setDefaultDocument) => {
     try {
         dispatch({ type: 'DELETE_REQUEST' });
-        const { data } = await axiosInstance.post(`${BASE_URL}/${resource}`, { public_id: documentId });
+        const { data } = await axiosInstance.post(`${BASE_URL}/${resource}`, { asset_id: documentId });
 
         dispatch({ type: 'DELETE_SUCCESS', payload: data.data.documents });
 
