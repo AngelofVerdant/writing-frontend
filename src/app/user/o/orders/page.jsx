@@ -15,6 +15,7 @@ export default function UserOrders() {
   const {
     data,
     updateData,
+    downloadData,
     filters,
     sortOrder,
     page,
@@ -24,6 +25,7 @@ export default function UserOrders() {
     handleFilterChange,
     handleSortOrderChange,
     handlePayment,
+    handleDownload,
     handleSearchChange,
     handleLimitChange,
     handlePageChange,
@@ -80,7 +82,7 @@ export default function UserOrders() {
         {!data.loading && !data.error && (
           <FlexWrapper>
             {data?.data?.orders?.map((order) => (
-              <OrderCard key={order.id} item={order} handlePaymentConfirmation={handlePaymentConfirmation} />
+              <OrderCard key={order.id} item={order} handlePaymentConfirmation={handlePaymentConfirmation} handleDownload={handleDownload} />
             ))}
           </FlexWrapper>
         )}

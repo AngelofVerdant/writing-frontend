@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconAdd, IconCheck } from '@/icons';
+import { IconAdd } from '@/icons';
 import { useDarkMode } from '@/state/DarkModeProvider';
 
 const AdminOrderCard = ({ item, handleAssignConfirmation }) => {
@@ -24,19 +24,15 @@ const AdminOrderCard = ({ item, handleAssignConfirmation }) => {
 
         <div className={`p-4 mt-2 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
             <div className="flex mt-2">
-                <button onClick={isIssueable ? () => handleAssignConfirmation(item) : undefined} disabled={!isIssueable} className={`flex items-center px-4 py-2 rounded-full text-lg font-bold ${!isIssueable ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} ${darkMode ? 'text-white bg-gray-800 hover:bg-gray-600' : 'text-gray-700 bg-gray-300 hover:bg-gray-200'}`}>
-                  {isIssueable ? (
-                      <>
-                          <IconAdd className={`h-7 w-7 mr-2`} title='Assign Order' />
-                          <span>Assign</span>
-                      </>
-                  ) : (
-                      <>
-                          <IconCheck className={`h-7 w-7 mr-2`} title='Order Status' />
-                          <span>Already Assigned</span>
-                      </>
-                  )}
-              </button>
+                {isIssueable && (
+                    <button
+                        onClick={() => handleAssignConfirmation(item)}
+                        className={`flex items-center px-4 py-2 rounded-full text-lg font-bold cursor-pointer ${darkMode ? 'text-white bg-gray-800 hover:bg-gray-600' : 'text-gray-700 bg-gray-300 hover:bg-gray-200'}`}
+                    >
+                        <IconAdd className="h-7 w-7 mr-2" title="Add Payment" />
+                        <span>Assign</span>
+                    </button>
+                )}
             </div>
         </div>
 

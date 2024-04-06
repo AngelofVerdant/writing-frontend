@@ -1,14 +1,15 @@
 export function IconUpload(props) {
-    return (
-      <svg
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        height="2em"
-        width="2em"
-        {...props}
-      >
-        <title>{props.title}</title>
-        <path d="M14 13v4h-4v-4H7l5-5 5 5m2.35-2.97A7.49 7.49 0 0012 4C9.11 4 6.6 5.64 5.35 8.03A6.004 6.004 0 000 14a6 6 0 006 6h13a5 5 0 005-5c0-2.64-2.05-4.78-4.65-4.97z" />
-      </svg>
-    );
+  return (
+    <svg
+      viewBox="0 0 1024 1024"
+      fill="currentColor"
+      height="2em"
+      width="2em"
+      {...props}
+    >
+      <title>{props.title}</title>
+      <path d="M400 317.7h73.9V656c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V317.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 163a8 8 0 00-12.6 0l-112 141.7c-4.1 5.3-.4 13 6.3 13zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z" />
+    </svg>
+  );
 }
+export default IconUpload;

@@ -25,6 +25,13 @@ const useOrderList = (
     error: null,
   });
 
+  const [downloadData, downloadDispatch] = useReducer(fetchReducer, {
+    data: [],
+    loading: false,
+    success: false,
+    error: null,
+  });
+
   const [filters, setFilters] = useState(defaultFilters);
   const [sortOrder, setSortOrder] = useState(defaultSortOrder);
   const [page, setPage] = useState(defaultPage);
@@ -65,7 +72,7 @@ const useOrderList = (
 
   useEffect(() => {
     debouncedFetchData();
-  }, [filters, sortOrder, page, limit, search, updateData]);
+  }, [filters, sortOrder, page, limit, search, updateData, downloadData]);
 
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
@@ -105,6 +112,39 @@ const useOrderList = (
         }
     } else {
         console.log(error.message);
+    }
+  };
+
+  const handleDownload = async (item) => {
+    try {
+        downloadDispatch({ type: 'FETCH_REQUEST' });
+        const response = await axiosInstance.get(`${BASE_URL}/orders/download/user/${item.id}`, {
+            responseType: 'blob'
+        });
+
+        const contentDisposition = response.headers['content-disposition'];
+        const fileNameMatch = contentDisposition && contentDisposition.match(/filename="(.+)"/);
+        const fileName = fileNameMatch ? fileNameMatch[1] : 'order_images.zip';
+
+        const blob = new Blob([response.data], { type: 'application/zip' });
+
+        const url = URL.createObjectURL(blob); 
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', fileName);
+
+        link.onload = () => {
+            downloadDispatch({ type: 'FETCH_SUCCESS', payload: 'Download successful' }); 
+            setPage(1);
+        };
+
+        document.body.appendChild(link);
+        link.click();
+
+        URL.revokeObjectURL(url);
+    } catch (error) {
+        const errorPayload = GetError(error);
+        downloadDispatch({ type: 'FETCH_FAIL', payload: errorPayload });
     }
   };
   
@@ -149,6 +189,7 @@ const useOrderList = (
   return {
     data,
     updateData,
+    downloadData,
     filters,
     sortOrder,
     page,
@@ -161,6 +202,7 @@ const useOrderList = (
     handleLimitChange,
     handlePageChange,
     handlePayment,
+    handleDownload,
     goToFirstPage,
     goToPreviousPage,
     goToNextPage,

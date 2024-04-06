@@ -1,9 +1,9 @@
 import React from 'react';
-import { IconAdd, IconCheck, IconClose, IconDownload, IconEdit } from '@/icons';
+import { IconAdd, IconDownload, IconEdit } from '@/icons';
 import Link from 'next/link';
 import { useDarkMode } from '@/state/DarkModeProvider';
 
-const OrderCard = ({ item, handlePaymentConfirmation }) => {
+const OrderCard = ({ item, handlePaymentConfirmation, handleDownload }) => {
   const { darkMode } = useDarkMode();
   const isPayable = item.payment === 1;
   const isComplete = item.stageid === 3;
@@ -24,37 +24,32 @@ const OrderCard = ({ item, handlePaymentConfirmation }) => {
 
         <div className={`p-4 mt-2 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
             <div className="flex mt-2">
-                <Link href={`/user/o/orders/edit/${item.id}`}>
-                    <button className={`px-4 py-2 rounded-full mr-2 ${darkMode ? 'text-white hover:bg-gray-800' : 'text-gray-700 hover:bg-gray-300'}`}>
-                        <IconEdit className={`h-7 w-7`} title='Edit order' />
+                {!isComplete && (
+                    <Link href={`/user/o/orders/edit/${item.id}`}>
+                        <button className={`flex items-center px-4 py-2 rounded-full text-lg font-bold cursor-pointer mr-2 ${darkMode ? 'text-white bg-gray-800 hover:bg-gray-600' : 'text-gray-700 bg-gray-300 hover:bg-gray-200'}`}>
+                            <IconEdit className="h-7 w-7 mr-2" title="Add Payment" />
+                            <span>Edit</span>
+                        </button>
+                    </Link>
+                )}
+                {isPayable && (
+                    <button
+                        onClick={() => handlePaymentConfirmation(item)}
+                        className={`flex items-center px-4 py-2 rounded-full text-lg font-bold cursor-pointer ${darkMode ? 'text-white bg-gray-800 hover:bg-gray-600' : 'text-gray-700 bg-gray-300 hover:bg-gray-200'}`}
+                    >
+                        <IconAdd className="h-7 w-7 mr-2" title="Add Payment" />
+                        <span>Pay Now</span>
                     </button>
-                </Link>
-                <button onClick={isPayable ? () => handlePaymentConfirmation(item) : undefined} disabled={!isPayable} className={`flex items-center px-4 py-2 rounded-full text-lg font-bold mr-2 ${!isPayable ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} ${darkMode ? 'text-white bg-gray-800 hover:bg-gray-600' : 'text-gray-700 bg-gray-300 hover:bg-gray-200'}`}>
-                    {isPayable ? (
-                        <>
-                            <IconAdd className={`h-7 w-7 mr-2`} title='Add Payment' />
-                            <span>Pay</span>
-                        </>
-                    ) : (
-                        <>
-                            <IconCheck className={`h-7 w-7 mr-2`} title='Add Payment' />
-                            <span>Paid</span>
-                        </>
-                    )}
-                </button>
-                <button onClick={isComplete ? () => handlePaymentConfirmation(item) : undefined} disabled={!isComplete} className={`flex items-center px-4 py-2 rounded-full text-lg font-bold ${!isComplete ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} ${darkMode ? 'text-white bg-gray-800 hover:bg-gray-600' : 'text-gray-700 bg-gray-300 hover:bg-gray-200'}`}>
-                    {isComplete ? (
-                        <>
-                            <IconDownload className={`h-7 w-7 mr-2`} title='Add Payment' />
-                            <span>Download</span>
-                        </>
-                    ) : (
-                        <>
-                            <IconClose className={`h-7 w-7 mr-2`} title='Add Payment' />
-                            <span>Incomplete</span>
-                        </>
-                    )}
-                </button>
+                )}
+                {isComplete && (
+                    <button
+                        onClick={() => handleDownload(item)}
+                        className={`flex items-center px-4 py-2 rounded-full text-lg font-bold cursor-pointer ${darkMode ? 'text-white bg-gray-800 hover:bg-gray-600' : 'text-gray-700 bg-gray-300 hover:bg-gray-200'}`}
+                    >
+                        <IconDownload className="h-7 w-7 mr-2" title="Download Order" />
+                        <span>Download</span>
+                    </button>
+                )}
             </div>
         </div>
 

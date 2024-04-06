@@ -1,7 +1,7 @@
 import { useEffect, useState, useReducer } from 'react';
 import { BASE_URL, GetError } from '@/helpers';
 import { useAuth, useDebounce } from '.';
-import { createReducer, fetchReducer } from '@/state/Reducers';
+import { fetchReducer } from '@/state/Reducers';
 
 const useAssignmentList = (
   defaultFilters = {},
@@ -16,7 +16,7 @@ const useAssignmentList = (
     error: null,
   });
 
-  const [downloadData, downloadDispatch] = useReducer(createReducer, {
+  const [downloadData, downloadDispatch] = useReducer(fetchReducer, {
     data: [],
     loading: false,
     success: false,
@@ -75,46 +75,36 @@ const useAssignmentList = (
 
   const handleDownload = async (item) => {
     try {
-        downloadDispatch({ type: 'CREATE_REQUEST' });
+        downloadDispatch({ type: 'FETCH_REQUEST' });
         
-        // Use axios GET request to download the file
-        const response = await axiosInstance.get(`${BASE_URL}/orders/download/${item.id}`, {
-            responseType: 'blob' // Set response type to blob
+        const response = await axiosInstance.get(`${BASE_URL}/orders/download/writer/${item.id}`, {
+            responseType: 'blob'
         });
 
-        // Extract file name from response headers or response body
         const contentDisposition = response.headers['content-disposition'];
         const fileNameMatch = contentDisposition && contentDisposition.match(/filename="(.+)"/);
         const fileName = fileNameMatch ? fileNameMatch[1] : 'order_images.zip';
 
-        // Create blob from response data
         const blob = new Blob([response.data], { type: 'application/zip' }); 
 
-        // Create temporary URL for the blob
         const url = URL.createObjectURL(blob); 
 
-        // Create a link element and set attributes for downloading the file
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', fileName); // Set download attribute to specify filename
+        link.setAttribute('download', fileName);
 
-        // Set event listener to detect when the download has completed
         link.onload = () => {
-            // Dispatch success action
-            downloadDispatch({ type: 'CREATE_SUCCESS', payload: 'Download successful' }); 
+            downloadDispatch({ type: 'FETCH_SUCCESS', payload: 'Download successful' }); 
             setPage(1);
         };
 
-        // Append the link to the body and trigger a click event to download the file
         document.body.appendChild(link);
         link.click();
 
-        // Revoke the temporary URL
         URL.revokeObjectURL(url);
     } catch (error) {
-        // Handle errors
         const errorPayload = GetError(error);
-        downloadDispatch({ type: 'UPDATE_FAIL', payload: errorPayload });
+        downloadDispatch({ type: 'FETCH_FAIL', payload: errorPayload });
     }
   };
   
