@@ -46,7 +46,7 @@ export default function Home() {
             </section>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {dataFetchedPoints?.data?.points?.map((point) => (
-                <div className={`${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-700'} shadow-md rounded-xl p-8`}>
+                <div key={point.point_id} className={`${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-700'} shadow-md rounded-xl p-8`}>
                   <h3 className={`text-2xl font-semibold ${darkMode ? 'text-white' : 'text-gray-700'} mb-2`}>{point.pointname}</h3>
                   <p className={`text-lg ${darkMode ? 'text-white' : 'text-gray-700'}`}>{point.pointdescription}</p>
                 </div>
@@ -104,7 +104,7 @@ export default function Home() {
             </section>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {dataFetchedEssays?.data?.essays?.map((essay) => (
-                <div className={`${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-700'} shadow-md rounded-lg p-6`}>
+                <div key={essay.essay_id} className={`${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-700'} shadow-md rounded-lg p-6`}>
                   <h3 className="text-2xl font-semibold mb-2">{essay.essayname}</h3>
                   <p className={`text-lg ${darkMode ? 'text-white' : 'text-gray-700'}`}>{essay.essaydescription}</p>
                 </div>
@@ -142,7 +142,7 @@ export default function Home() {
             </h2>
             <div className={`flex flex-col space-y-8`}>
               {dataFetchedPhases?.data?.phases?.map((phase) => (
-                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} shadow-md rounded-lg p-6`}>
+                <div key={phase.phase_id} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} shadow-md rounded-lg p-6`}>
                   <h3 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-700'}`}>{phase.phasename}</h3>
                   <p className={`text-lg mb-4 ${darkMode ? 'text-white' : 'text-gray-700'}`}>{phase.phasedescription}</p>
                 </div>

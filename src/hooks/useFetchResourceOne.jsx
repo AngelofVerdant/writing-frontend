@@ -1,11 +1,9 @@
 import { useEffect, useReducer } from 'react';
 import { BASE_URL, GetError } from '@/helpers';
-import { useAuth } from '.';
+import axios from 'axios';
 import { fetchReducer } from '@/state/Reducers';
 
 const useFetchResourceOne = ( resource ) => {
-    const { axiosInstance } = useAuth();
-
     const [data, dispatch] = useReducer(fetchReducer, {
         data: [],
         loading: false,
@@ -19,7 +17,7 @@ const useFetchResourceOne = ( resource ) => {
       dispatch({ type: 'FETCH_RESET' });
       dispatch({ type: 'FETCH_REQUEST' });
 
-      const { data } = await axiosInstance.get(`${BASE_URL}/${resource}`);
+      const { data } = await axios.get(`${BASE_URL}/${resource}`);
 
       dispatch({ type: 'FETCH_SUCCESS', payload: data.data });
     } catch (err) {

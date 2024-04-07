@@ -12,19 +12,9 @@ import { adminMenu } from '@/data/adminmenu';
 
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useDarkMode();
-  const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState({name: null, link: null});
   const [selectedSubcategory, setSelectedSubcategory] = useState({name: null, link: null});
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-
-
-  const { data: dataFetched } = useFetchResource('product-categories/menu');
-
-  useEffect(() => {
-    if (dataFetched.success) {
-      setCategories(dataFetched.data.categories);
-    }
-  }, [dataFetched]);
 
 
   const toggleMobileMenu = () => {
@@ -242,40 +232,6 @@ const Navbar = () => {
         </NavInnerWrapper>
 
         <GroupSeparatorView />
-        
-        {/* Hover Menu */}
-        <MenuHoverWrapper>
-          {categories.map((menuItem, index) => (
-            <MenuHoverGroupWrapper key={`third-${index}`}>
-              <Link href={`/collections/${menuItem.collectionlink}`}>
-                <MenuHoverHeading>
-                  {menuItem.collectionname}
-                </MenuHoverHeading>
-              </Link>
-              <MenuHoverAbsoluteWrapper>
-                {menuItem.Subcategories.map((subcategory, subIndex) => (
-                  <MenuHoverAbsoluteInnerWrapper key={`fourth-${subIndex}`}>
-                    <Link href={`/collections/${subcategory.collectionlink}`}>
-                      <GroupAbsoluteViewAndIcon>
-                        All {subcategory.collectionname}
-                        <GroupAbsoluteInnerIcon>
-                          <IconRight className={`h-5 w-5`}/>
-                        </GroupAbsoluteInnerIcon>
-                      </GroupAbsoluteViewAndIcon>
-                    </Link>
-                    {subcategory.Subcategories && subcategory.Subcategories.map((item, itemIndex) => (
-                      <Link href={`/collections/${item.collectionlink}`} key={`fiveth-${itemIndex}`}>
-                        <MenuHoverHeading>
-                          {item.collectionname}
-                        </MenuHoverHeading>
-                      </Link>
-                    ))}
-                  </MenuHoverAbsoluteInnerWrapper>
-                ))}
-              </MenuHoverAbsoluteWrapper>
-            </MenuHoverGroupWrapper>
-          ))}
-        </MenuHoverWrapper>
 
       </DesktopNavWrapper>
  
@@ -328,114 +284,6 @@ const Navbar = () => {
 
         <GroupSeparatorView />
 
-        {showMobileMenu ? (
-          <MobileRelativeWrapper>
-            {selectedCategory ? (
-              selectedSubcategory ? (
-                <FullWrapper>
-                  <MobileIconAndView click={() => setSelectedSubcategory(null)}>
-                    <InlineFlexWrapper>
-                      <FlexButton label={`Back to ${selectedSubcategory.name}`}>
-                        <IconLeft title={`Back`} className="h-5 w-5" />
-                      </FlexButton>
-                    </InlineFlexWrapper>
-                  </MobileIconAndView>
-                  {categories.find((category) => category.collectionname === selectedCategory.name)
-                    ?.Subcategories.find((subcategory) => subcategory.collectionname === selectedSubcategory.name)
-                    ?.Subcategories.map((item, itemIndex) => (
-                      <Link href={`/collections/${item.collectionlink}`} key={`sixth-${itemIndex}`}>
-                        <MobileItemView>
-                            <MobileSpanView>
-                              {item.collectionname}
-                            </MobileSpanView>
-                        </MobileItemView>
-                      </Link>
-                    ))}
-                    <Link href={`/collections/${selectedSubcategory.link}`}>
-                      <MobileItemView>
-                          <MobileSpanView>
-                            All {selectedSubcategory.name}
-                          </MobileSpanView>
-                      </MobileItemView>
-                    </Link>
-                </FullWrapper>
-              ) : (
-                <FullWrapper>
-                  <MobileIconAndView click={() => setSelectedCategory(null)}>
-                    <InlineFlexWrapper>
-                      <FlexButton label={`Back to Main Menu`}>
-                        <IconLeft title={`Back`} className="h-5 w-5" />
-                      </FlexButton>
-                    </InlineFlexWrapper>
-                  </MobileIconAndView>
-
-                  {categories
-                    .find((category) => category.collectionname === selectedCategory.name)
-                    ?.Subcategories.map((subcategory, subIndex) => (
-                      <MobileItemViewActions key={`seventh-${subIndex}`} click={() => setSelectedSubcategory({ name: subcategory.collectionname, link: subcategory.collectionlink })}>
-                        <MobileFlexSpanAndIcon>
-                          {subcategory.collectionname}
-                          {subcategory.Subcategories && (
-                            <IconRight className={`h-4 w-4`} />
-                          )}
-                        </MobileFlexSpanAndIcon>
-                      </MobileItemViewActions>
-                    ))}
-                    <Link href={`/collections/${selectedCategory.link}`}>
-                      <MobileItemView>
-                          <MobileSpanView>
-                            All {selectedCategory.name}
-                          </MobileSpanView>
-                      </MobileItemView>
-                    </Link>
-                </FullWrapper>
-              )
-            ) : (
-              <FullWrapper>
-                {categories.map((menuItem, index) => (
-                  <MobileItemViewActions key={`eighth-${index}`} click={() => setSelectedCategory({ name: menuItem.collectionname, link: menuItem.collectionlink })}>
-                    <MobileFlexSpanAndIcon>
-                      {menuItem.collectionname}
-                      {menuItem.Subcategories && (
-                        <IconRight className={`h-4 w-4`} />
-                      )}
-                    </MobileFlexSpanAndIcon>
-                  </MobileItemViewActions>
-                ))}
-              </FullWrapper>
-            )}
-          </MobileRelativeWrapper>
-        ) : null}
-
-        {showAdminMenu ? (
-          <MobileRelativeWrapper>
-            {selectedMenuMobile ? (
-              <FullWrapper>
-                <MobileIconAndView click={() => setSelectedMenuMobile(null)}>
-                  <InlineFlexWrapper>
-                    <FlexButton label={`Back to Main Menu`}>
-                      <IconLeft title={`Back`} className="h-5 w-5" />
-                    </FlexButton>
-                  </InlineFlexWrapper>
-                </MobileIconAndView>
-                
-                {selectedMenuMobile.options.map((submenu, index) => (
-                  <Link href={`/admin/${selectedMenuMobile.link}/${submenu.link}`} key={`nineth-${index}`}>
-                    <MobileItemView>
-                        <MobileSpanView>
-                          {submenu.name}
-                        </MobileSpanView>
-                    </MobileItemView>
-                  </Link>
-                ))}
-              </FullWrapper>
-            ) : (
-              <FullWrapper>
-                
-              </FullWrapper>
-            )}
-          </MobileRelativeWrapper>
-        ) : null}
       </MobileNavWrapper>
     </>
   );
