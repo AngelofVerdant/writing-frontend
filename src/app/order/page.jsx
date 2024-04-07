@@ -26,14 +26,14 @@ export default function OrderWizard() {
     const [isConditionStepValid, setConditionStepValid] = useState(false);
 
     const steps = [
-        <EducationStep stepIndex={0} stepperProps={stepperProps} stepData={stepData} setEducationStepValid={setEducationStepValid}/>,
-        <PaperStep stepIndex={1} stepperProps={stepperProps} stepData={stepData} setPaperStepValid={setPaperStepValid}/>,
-        <TypeStep stepIndex={2} stepperProps={stepperProps} stepData={stepData} setTypeStepValid={setTypeStepValid}/>,
-        <TitleDescriptionStep stepIndex={3} stepperProps={stepperProps} stepData={stepData} setTitleDescriptionStepValid={setTitleDescriptionStepValid}/>,
-        <DeadlineSpaceStep stepIndex={4} stepperProps={stepperProps} stepData={stepData} setDeadlineSpaceStepValid={setDeadlineSpaceStepValid}/>,
-        <PageSourceStep stepIndex={5} stepperProps={stepperProps} stepData={stepData} setPageSourceStepValid={setPageSourceStepValid}/>,
-        <DocumentStep stepIndex={6} stepperProps={stepperProps} stepData={stepData} setDocumentStepValid={setDocumentStepValid}/>,
-        <ConditionStep stepIndex={7} stepperProps={stepperProps} stepData={stepData} setConditionStepValid={setConditionStepValid}/>,
+        <EducationStep key={0} stepIndex={0} stepperProps={stepperProps} stepData={stepData} setEducationStepValid={setEducationStepValid}/>,
+        <PaperStep key={1} stepIndex={1} stepperProps={stepperProps} stepData={stepData} setPaperStepValid={setPaperStepValid}/>,
+        <TypeStep key={2} stepIndex={2} stepperProps={stepperProps} stepData={stepData} setTypeStepValid={setTypeStepValid}/>,
+        <TitleDescriptionStep key={3} stepIndex={3} stepperProps={stepperProps} stepData={stepData} setTitleDescriptionStepValid={setTitleDescriptionStepValid}/>,
+        <DeadlineSpaceStep key={4} stepIndex={4} stepperProps={stepperProps} stepData={stepData} setDeadlineSpaceStepValid={setDeadlineSpaceStepValid}/>,
+        <PageSourceStep key={5} stepIndex={5} stepperProps={stepperProps} stepData={stepData} setPageSourceStepValid={setPageSourceStepValid}/>,
+        <DocumentStep key={6} stepIndex={6} stepperProps={stepperProps} stepData={stepData} setDocumentStepValid={setDocumentStepValid}/>,
+        <ConditionStep key={7} stepIndex={7} stepperProps={stepperProps} stepData={stepData} setConditionStepValid={setConditionStepValid}/>,
       ];
 
     const progress = ((stepperProps.currentStep + 1) / steps.length) * 100;

@@ -1,4 +1,5 @@
 import { useDeleteMedia } from "@/hooks";
+import Image from 'next/image';
 import { ButtonCustomView, InlineFlex, Messages, ModalWrapper } from "@/helpers";
 import { IconClose, IconDelete, IconSpinner, IconToggleOn } from "@/icons";
 import { useDarkMode } from "@/state/DarkModeProvider";
@@ -82,7 +83,7 @@ const imageList = (
           <div className={`relative w-64 h-64 overflow-hidden cursor-pointer rounded-lg ${defaultImage.public_id === image.public_id ? (darkMode ? 'bg-gray-700' : 'bg-gray-200') : 'bg-gray-600'}`}
             onClick={() => showImageMenu(image)}
           >
-            <img
+            {/* <img
               src={image.secure_url}
               alt={`gallery-image-${index}`}
               className={`${
@@ -92,7 +93,20 @@ const imageList = (
                     : 'bg-gray-400'
                   : `${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`
               } absolute inset-0 w-full h-full object-cover`}
-            />
+            /> */}
+            <Image 
+              src={image.secure_url} 
+              alt={`gallery-image-${index}`}
+              className={`${
+                selectedImage && selectedImage.public_id === image.public_id
+                  ? darkMode
+                    ? 'bg-gray-500 opacity-10'
+                    : 'bg-gray-400'
+                  : `${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`
+              } absolute inset-0 w-full h-full object-cover`}
+              width={500} 
+              height={500}
+             />
           </div>
         </div>
       ))}
