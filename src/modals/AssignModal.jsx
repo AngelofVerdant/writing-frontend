@@ -8,7 +8,7 @@ export default function AssignModal({ showModal, itemName, item, handleUpdate, h
   const { darkMode } = useDarkMode();
 
   const [users, setUsers] = useState([]);
-  const { data: dataFetchedUsers } = useFetchResource('users/all');
+  const { data: dataFetchedUsers } = useFetchResource('users/writers');
   
   useEffect(() => {
       if (dataFetchedUsers.success) {
