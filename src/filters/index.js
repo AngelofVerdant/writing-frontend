@@ -9,6 +9,7 @@ import EssayFilter from "./EssayFilter";
 import PhaseFilter from "./PhaseFilter";
 import PostFilter from "./PostFilter";
 import AssignmentFilter from "./AssignmentFilter";
+import PageFilter from "./PageFilter";
 
 export {
     LevelFilter,
@@ -22,4 +23,5 @@ export {
     PhaseFilter,
     PostFilter,
     AssignmentFilter,
+    PageFilter,
 }

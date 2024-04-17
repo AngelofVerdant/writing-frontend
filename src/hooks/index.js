@@ -51,6 +51,8 @@ import usePostList from "./usePostList";
 import useAssignmentList from "./useAssignmentList";
 import useUploadDocument from "./useUploadDocument";
 import useDeleteDocument from "./useDeleteDocument";
+import usePageList from "./usePageList";
+import useResourceLink from "./useResourceLink";
 
 
 export {
@@ -96,4 +98,6 @@ export {
     useAssignmentList,
     useUploadDocument,
     useDeleteDocument,
+    usePageList,
+    useResourceLink,
 }

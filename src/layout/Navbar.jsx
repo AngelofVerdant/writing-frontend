@@ -1,26 +1,22 @@
 'use client'
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import { jwtDecode } from "jwt-decode";
-import { useClickOutside, useFetchResource } from '@/hooks';
-import { IconClose, IconLeft, IconLogout, IconMenu, IconRight, IconSettings, IconShoppingCart, IconToggleOff, IconToggleOn, IconUser } from '@/icons';
+import { IconClose, IconLogout, IconMenu, IconRight, IconSettings, IconShoppingCart, IconToggleOff, IconToggleOn, IconUser } from '@/icons';
 import Link from 'next/link';
 import { useDarkMode } from '@/state/DarkModeProvider';
-import { BrandView, DesktopNavWrapper, FlexButton, FlexItemCenterWrapper, FullWrapper, GroupAbsoluteInnerIcon, GroupAbsoluteViewAndIcon, GroupAbsoluteWrapper, GroupAvatarView, GroupFlexWrapper, GroupHeadingView, GroupIconView, GroupRelativeWrapper, GroupSeparatorView, InlineFlexWrapper, MenuHoverAbsoluteInnerWrapper, MenuHoverAbsoluteWrapper, MenuHoverGroupWrapper, MenuHoverHeading, MenuHoverWrapper, MobileFlexSpanAndIcon, MobileIconAndView, MobileIconWrapper, MobileItemView, MobileItemViewActions, MobileRelativeWrapper, MobileSpanView, NavInnerWrapper } from '@/helpers';
+import { BrandView, DesktopNavWrapper, FlexItemCenterWrapper, GroupAbsoluteInnerIcon, GroupAbsoluteViewAndIcon, GroupAbsoluteWrapper, GroupAvatarView, GroupFlexWrapper, GroupHeadingView, GroupIconView, GroupRelativeWrapper, GroupSeparatorView, MobileIconWrapper, NavInnerWrapper } from '@/helpers';
 import MobileNavWrapper from '@/helpers/MobileNavWrapper';
 import { AuthContext } from '@/state/AuthProvider';
 import { adminMenu } from '@/data/adminmenu';
+import { useFetchResourceOne } from '@/hooks';
 
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useDarkMode();
-  const [selectedCategory, setSelectedCategory] = useState({name: null, link: null});
-  const [selectedSubcategory, setSelectedSubcategory] = useState({name: null, link: null});
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-
+  const { data: dataFetchedCompany } = useFetchResourceOne('companies');
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
-    setSelectedCategory(null);
-    setSelectedSubcategory(null);
   };
 
   const signoutHandler = () => {
@@ -34,32 +30,23 @@ const Navbar = () => {
 
   const decodedUser = userInfo ? jwtDecode(userInfo.user.accessToken) : null;
 
-  const [isPanelVisible, setIsPanelVisible] = useState(false);
-
-  const inputRef = useRef(null);
-
-  useClickOutside(inputRef, () => {
-    setIsPanelVisible(false);
-  });
-
-  const [selectedMenuMobile, setSelectedMenuMobile] = useState(null);
   const [showAdminMenu, setShowAdminMenu] = useState(false);
   
   const toggleAdminMenu = () => {
     setShowAdminMenu(!showAdminMenu);
-    setSelectedMenuMobile(null);
   };
 
   return (
     <>
       <DesktopNavWrapper>
         <NavInnerWrapper>
-          <FlexItemCenterWrapper>
-            <BrandView>
-              Brand
-            </BrandView>
-          </FlexItemCenterWrapper>
-
+          {dataFetchedCompany?.data && (
+            <FlexItemCenterWrapper>
+              <BrandView>
+                {dataFetchedCompany.data.companyname}
+              </BrandView>
+            </FlexItemCenterWrapper>
+          )}
           
           <FlexItemCenterWrapper>
             {/* Shopping Cart Section */}

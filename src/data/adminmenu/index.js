@@ -92,6 +92,16 @@ export const adminMenu = [
         name: "Phases Involved",
         link: "phases"
       },
+      {
+        id: 5,
+        name: "Pages",
+        link: "pages"
+      },
+      {
+        id: 6,
+        name: "Company",
+        link: "company"
+      },
     ],
   },
 ];

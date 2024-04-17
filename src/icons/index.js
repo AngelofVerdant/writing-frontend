@@ -30,6 +30,8 @@ import { IconMinus } from "./IconMinus";
 import { IconTransfer } from "./IconTransfer";
 import { IconCheck } from "./IconCheck";
 import { IconDownload } from "./IconDownload";
+import { IconFacebook } from "./IconFacebook";
+import { IconTwitter } from "./IconTwitter";
 
 
 export {
@@ -65,4 +67,6 @@ export {
     IconTransfer,
     IconCheck,
     IconDownload,
+    IconFacebook,
+    IconTwitter,
 }

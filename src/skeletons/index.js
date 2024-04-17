@@ -14,6 +14,7 @@ import EssaySectionSkeleton from "./EssaySectionSkeleton";
 import PhaseSectionSkeleton from "./PhaseSectionSkeleton";
 import PostCardSkeleton from "./PostCardFilter";
 import AssignmentCardSkeleton from "./AssignmentCardSkeleton";
+import PageCardSkeleton from "./PageCardSkeleton";
 
 export {
     TwoPartCardSkeleton,
@@ -33,4 +34,5 @@ export {
     PhaseSectionSkeleton,
     PostCardSkeleton,
     AssignmentCardSkeleton,
+    PageCardSkeleton,
 }
