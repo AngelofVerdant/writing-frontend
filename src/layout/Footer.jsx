@@ -47,9 +47,11 @@ export default function Footer() {
           </div>
         </div>
       )}
-      <div className="border-t border-gray-800 mt-8 pt-4 text-center">
-        <p>&copy; 2024 {dataFetchedCompany.data.companyname}. All rights reserved.</p>
-      </div>
+      {dataFetchedCompany?.data && (
+        <div className="border-t border-gray-800 mt-8 pt-4 text-center">
+          <p>&copy; 2024 {dataFetchedCompany.data.companyname}. All rights reserved.</p>
+        </div>
+      )}
     </footer>
   )
 }
