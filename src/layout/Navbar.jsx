@@ -9,6 +9,7 @@ import MobileNavWrapper from '@/helpers/MobileNavWrapper';
 import { AuthContext } from '@/state/AuthProvider';
 import { adminMenu } from '@/data/adminmenu';
 import { useFetchResourceOne } from '@/hooks';
+import Link from 'next/link';
 
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useDarkMode();
@@ -42,9 +43,11 @@ const Navbar = () => {
         <NavInnerWrapper>
           {dataFetchedCompany?.data && (
             <FlexItemCenterWrapper>
-              <BrandView>
-                {dataFetchedCompany.data.companyname}
-              </BrandView>
+              <Link href={`/`}>
+                <BrandView>
+                  {dataFetchedCompany.data.companyname}
+                </BrandView>
+              </Link>
             </FlexItemCenterWrapper>
           )}
           

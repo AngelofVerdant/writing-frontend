@@ -31,7 +31,7 @@ export default function Footer() {
             <ul>
               <li><Link href={`/page/privacy-policy`}>Privacy Policy</Link></li>
               <li><Link href={`/page/terms-of-service`}>Terms of Service</Link></li>
-              <li><Link href={`/page/dislaimer`}>Disclaimer</Link></li>
+              <li><Link href={`/page/disclaimer`}>Disclaimer</Link></li>
             </ul>
           </div>
           <div className="w-full md:w-1/2 lg:w-1/4 mb-8 md:mb-0">
