@@ -12,9 +12,6 @@ const PaperTypeCard = ({ item, handleDeleteConfirmation }) => {
             <div className="flex justify-center items-center h-full">
                 <h2 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-600'}`}>{item.title}</h2>
             </div>
-            <div className={`absolute top-0 left-0 p-2 ${darkMode ? 'bg-gray-600 text-white' : 'bg-gray-100 text-gray-700'} text-xl font-bold rounded-br-lg`}>
-                $ {item.price}
-            </div>
         </div>
 
         <div className={`p-4 mt-2 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>

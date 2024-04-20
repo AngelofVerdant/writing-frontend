@@ -7,6 +7,7 @@ import { PrimaryEditor } from '@/editor';
 export default function NewLevel() {
     const [formData, setFormData] = useState({
         levelname: '',
+        priceperpage: '',
     });
 
     const [levelDescription, setLevelDescription] = useState('');
@@ -29,6 +30,7 @@ export default function NewLevel() {
         const newResource = {
             levelname: formData.levelname,
             leveldescription: levelDescription,
+            priceperpage: parseFloat(formData.priceperpage),
         };
         createResource(newResource, '/admin/h/levels');
     };
@@ -55,6 +57,18 @@ export default function NewLevel() {
                         change={handleChange}
                         autoComplete={false}
                         placeholder={`Name of the level`}
+                    />
+                </FlexItemWrapper>
+                <FlexItemWrapper width={`md:w-1/4`}>
+                    <LabelView name={`Price Per Page`} forWhat={`priceperpage`} />
+                    <TextInputView
+                        id={`priceperpage`}
+                        type={`number`}
+                        name={`priceperpage`}
+                        value={formData.priceperpage}
+                        change={handleChange}
+                        autoComplete={false}
+                        placeholder={`0`}
                     />
                 </FlexItemWrapper>
             </FlexWrapper>

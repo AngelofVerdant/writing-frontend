@@ -12,6 +12,7 @@ export default function EditLevel() {
     
     const [formData, setFormData] = useState({
         levelname: '',
+        priceperpage: '',
         initialContent: ''
     });
     
@@ -22,6 +23,7 @@ export default function EditLevel() {
         setFormData({
           ...formData,
           levelname: data.data.levelname || '',
+          priceperpage: data.data.priceperpage || '',
           initialContent: data.data.leveldescription || ''
         });
         editorInstanceHandler();
@@ -46,6 +48,7 @@ export default function EditLevel() {
       e.preventDefault();
       const updateItem = {
         levelname: formData.levelname,
+        priceperpage: parseFloat(formData.priceperpage),
         leveldescription: levelDescription,
       };
       updateResource(updateItem, '/admin/h/levels');
@@ -63,18 +66,30 @@ export default function EditLevel() {
       {dataUpdated.error && !dataUpdated.loading && <Messages>{dataUpdated.error}</Messages>}
       <NonFormWrapper>
         <FlexWrapper>
-          <FlexItemWrapper width={`md:w-1/2`}>
-              <LabelView name={`Level Name`} forWhat={`levelname`} />
-              <TextInputView
-                  id={`levelname`}
-                  type={`text`}
-                  name={`levelname`}
-                  value={formData.levelname}
-                  change={handleChange}
-                  autoComplete={false}
-                  placeholder={`Name of the Level`}
-              />
-          </FlexItemWrapper>
+            <FlexItemWrapper width={`md:w-1/2`}>
+                <LabelView name={`Level Name`} forWhat={`levelname`} />
+                <TextInputView
+                    id={`levelname`}
+                    type={`text`}
+                    name={`levelname`}
+                    value={formData.levelname}
+                    change={handleChange}
+                    autoComplete={false}
+                    placeholder={`Name of the Level`}
+                />
+            </FlexItemWrapper>
+            <FlexItemWrapper width={`md:w-1/4`}>
+                <LabelView name={`Price Per Page`} forWhat={`priceperpage`} />
+                <TextInputView
+                    id={`priceperpage`}
+                    type={`number`}
+                    name={`priceperpage`}
+                    value={formData.priceperpage}
+                    change={handleChange}
+                    autoComplete={false}
+                    placeholder={`0`}
+                />
+            </FlexItemWrapper>
         </FlexWrapper>
 
         <FlexWrapper>

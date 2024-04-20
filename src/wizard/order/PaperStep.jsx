@@ -17,11 +17,14 @@ export default function PaperStep({ stepIndex, stepperProps, stepData, setPaperS
     const [papers, setPapers] = useState([]);
     useEffect(() => {
       if (dataFetchedPapers.success) {
-        setPapers(dataFetchedPapers.data.papers);
+        const extractedPapers = dataFetchedPapers.data.level.LevelPapers?.map(paper => ({
+          id: paper.paper_id,
+          title: paper.papername
+        }));
+        setPapers(extractedPapers || []);
       }
     }, [dataFetchedPapers]);
     const [selectedpaper, paperradios] = useRadioObject(papers, 'md:w-1/2');
-
 
     useEffect(() => {
       handleStepperInput('paper', selectedpaper);

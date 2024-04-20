@@ -3,9 +3,9 @@ import React , { useState} from 'react';
 import { ContainerWrapper, FlexWrapper, Messages, OverviewCard, PaginationCard, SectionOverviewWrapper } from '@/helpers';
 import { papertype } from '@/assets';
 import { usePaperTypeList } from '@/hooks';
-import { PaperCardSkeleton, PaperTypeCardSkeleton } from '@/skeletons';
+import { PaperTypeCardSkeleton } from '@/skeletons';
 import { PaperTypeFilter } from '@/filters';
-import { PaperCard, PaperTypeCard } from '@/cards';
+import { PaperTypeCard } from '@/cards';
 import { DeleteModal } from '@/modals';
 import { limits, orders } from '@/data/filterOptions';
 

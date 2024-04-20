@@ -12,7 +12,6 @@ export default function EditPaperType() {
     
     const [formData, setFormData] = useState({
         papertypename: '',
-        priceperpage: '',
         preselectedpaper: '',
         initialContent: ''
     });
@@ -24,7 +23,6 @@ export default function EditPaperType() {
         setFormData({
           ...formData,
           papertypename: data.data.papertypename || '',
-          priceperpage: data.data.priceperpage || '',
           preselectedpaper: data.data.paper_id || null,
           initialContent: data.data.papertypedescription || ''
         });
@@ -61,7 +59,6 @@ export default function EditPaperType() {
       const updateItem = {
         papertypename: formData.papertypename,
         papertypedescription: paperTypeDescription,
-        priceperpage: parseFloat(formData.priceperpage),
         paper_id: selectedId,
       };
       updateResource(updateItem, '/admin/h/paper-types');
@@ -89,18 +86,6 @@ export default function EditPaperType() {
                     change={handleChange}
                     autoComplete={false}
                     placeholder={`Name of the Paper Type`}
-                />
-            </FlexItemWrapper>
-            <FlexItemWrapper width={`md:w-1/4`}>
-                <LabelView name={`Price Per Page`} forWhat={`priceperpage`} />
-                <TextInputView
-                    id={`priceperpage`}
-                    type={`number`}
-                    name={`priceperpage`}
-                    value={formData.priceperpage}
-                    change={handleChange}
-                    autoComplete={false}
-                    placeholder={`0`}
                 />
             </FlexItemWrapper>
         </FlexWrapper>

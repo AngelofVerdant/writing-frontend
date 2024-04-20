@@ -1,7 +1,7 @@
 'use client'
 import { PrimaryEditor } from '@/editor';
-import { ContainerWrapper, FlexItemWrapper, FlexWrapper, FooterActionView, HeaderActionView, LabelView, Messages, NonFormWrapper, RadioView, Spinner, TextInputView } from '@/helpers';
-import { useFetchResource, useRadio, useResourceSingle, useResourceUpdate } from '@/hooks';
+import { CheckView, ContainerWrapper, FlexItemWrapper, FlexWrapper, FooterActionView, HeaderActionView, LabelView, Messages, NonFormWrapper, Spinner, TextInputView } from '@/helpers';
+import { useCheckboxUpdate, useFetchResource, useResourceSingle, useResourceUpdate } from '@/hooks';
 import { useParams } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
 
@@ -12,7 +12,7 @@ export default function EditPaper() {
     
     const [formData, setFormData] = useState({
         papername: '',
-        preselectedlevel: '',
+        preselectedlevels: '',
         initialContent: ''
     });
     
@@ -20,10 +20,11 @@ export default function EditPaper() {
 
     useEffect(() => {
       if (data?.data) {
+        const levelOptionIds = data.data.Levels?.map(level => level.level_id);
         setFormData({
           ...formData,
           papername: data.data.papername || '',
-          preselectedlevel: data.data.level_id || null,
+          preselectedlevels: levelOptionIds || [],
           initialContent: data.data.paperdescription || ''
         });
         editorInstanceHandler();
@@ -50,7 +51,7 @@ export default function EditPaper() {
       }
     }, [dataFetchedLevels]);
     
-    const [selectedId, radios] = useRadio(levels, 'md:w-1/4', formData.preselectedlevel);
+    const [levelItems, levelBoxes, handleSelectAllLevels, clearAllLevels] = useCheckboxUpdate(levels, 'md:w-1/4', formData.preselectedlevels);
 
     const { data: dataUpdated, updateResource } = useResourceUpdate(`papers`, id, formData, setFormData);
 
@@ -59,7 +60,7 @@ export default function EditPaper() {
       const updateItem = {
         papername: formData.papername,
         paperdescription: paperDescription,
-        level_id: selectedId,
+        level_ids: levelItems,
       };
       updateResource(updateItem, '/admin/h/papers');
     };
@@ -110,7 +111,13 @@ export default function EditPaper() {
               {dataFetchedLevels.loading && <Spinner />}
               {dataFetchedLevels.error && <Messages>{dataFetchedLevels.error}</Messages>}
               {!dataFetchedLevels.loading && !dataFetchedLevels.error && (
-                  <RadioView title={`Level`} label={`level`} data={radios}/>
+                  <CheckView
+                      title={`Levels`}
+                      label={`levels`} 
+                      data={levelBoxes}
+                      handleSelectAll={handleSelectAllLevels}
+                      allSelected = {levelItems}
+                  />
               )}
           </FlexItemWrapper>
         </FlexWrapper>

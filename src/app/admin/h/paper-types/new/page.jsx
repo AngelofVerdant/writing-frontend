@@ -7,7 +7,6 @@ import { PrimaryEditor } from '@/editor';
 export default function NewPaperType() {
     const [formData, setFormData] = useState({
         papertypename: '',
-        priceperpage: '',
     });
 
     const [papertypeDescription, setPaperTypeDescription] = useState('');
@@ -41,7 +40,6 @@ export default function NewPaperType() {
         const newResource = {
             papertypename: formData.papertypename,
             papertypedescription: papertypeDescription,
-            priceperpage: parseFloat(formData.priceperpage),
             paper_id: selectedId,
         };
         createResource(newResource, '/admin/h/paper-types');
@@ -69,18 +67,6 @@ export default function NewPaperType() {
                         change={handleChange}
                         autoComplete={false}
                         placeholder={`Name of the paper type`}
-                    />
-                </FlexItemWrapper>
-                <FlexItemWrapper width={`md:w-1/4`}>
-                    <LabelView name={`Price Per Page`} forWhat={`priceperpage`} />
-                    <TextInputView
-                        id={`priceperpage`}
-                        type={`number`}
-                        name={`priceperpage`}
-                        value={formData.priceperpage}
-                        change={handleChange}
-                        autoComplete={false}
-                        placeholder={`0`}
                     />
                 </FlexItemWrapper>
             </FlexWrapper>

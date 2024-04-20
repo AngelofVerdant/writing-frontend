@@ -9,7 +9,7 @@ import MobileNavWrapper from '@/helpers/MobileNavWrapper';
 import { AuthContext } from '@/state/AuthProvider';
 import { adminMenu } from '@/data/adminmenu';
 import { useFetchResourceOne } from '@/hooks';
-import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useDarkMode();
@@ -45,7 +45,14 @@ const Navbar = () => {
             <FlexItemCenterWrapper>
               <Link href={`/`}>
                 <BrandView>
-                  {dataFetchedCompany.data.companyname}
+                  <Image
+                    id="preview"
+                    className="w-full h-full object-cover"
+                    src={dataFetchedCompany.data.defaultimage?.secure_url}
+                    alt="Image Preview" 
+                    width={100}
+                    height={50}
+                  />
                 </BrandView>
               </Link>
             </FlexItemCenterWrapper>

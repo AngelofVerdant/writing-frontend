@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { ContainerWrapper, FlexItemWrapper, FlexWrapper, FooterActionView, HeaderActionView, LabelView, Messages, NonFormWrapper, RadioView, Spinner, TextInputView } from '@/helpers';
-import { useCreateResource, useFetchResource, useRadio } from '@/hooks';
+import { CheckView, ContainerWrapper, FlexItemWrapper, FlexWrapper, FooterActionView, HeaderActionView, LabelView, Messages, NonFormWrapper, Spinner, TextInputView } from '@/helpers';
+import { useCheckbox, useCreateResource, useFetchResource } from '@/hooks';
 import { PrimaryEditor } from '@/editor';
 
 export default function NewPaper() {
@@ -30,9 +30,9 @@ export default function NewPaper() {
         if (dataFetchedLevels.success) {
           setLevels(dataFetchedLevels.data.levels);
         }
-    }, [dataFetchedLevels]);    
+    }, [dataFetchedLevels]);
   
-    const [selectedId, radios] = useRadio(levels, 'md:w-1/4');
+    const [levelItems, levelBoxes, handleSelectAllLevels, clearAllLevels] = useCheckbox(levels, 'md:w-1/4');
 
     const { data: dataCreated, createResource } = useCreateResource('papers');
     const handleSubmit = async (e) => {
@@ -40,7 +40,7 @@ export default function NewPaper() {
         const newResource = {
             papername: formData.papername,
             paperdescription: paperDescription,
-            level_id: selectedId,
+            level_ids: levelItems,
         };
         createResource(newResource, '/admin/h/papers');
     };
@@ -91,12 +91,17 @@ export default function NewPaper() {
                     {dataFetchedLevels.loading && <Spinner />}
                     {dataFetchedLevels.error && <Messages>{dataFetchedLevels.error}</Messages>}
                     {!dataFetchedLevels.loading && !dataFetchedLevels.error && (
-                        <RadioView title={`Level`} label={`level`} data={radios}/>
+                        <CheckView
+                            title={`Levels`}
+                            label={`levels`} 
+                            data={levelBoxes}
+                            handleSelectAll={handleSelectAllLevels}
+                            allSelected = {levelItems}
+                        />
                     )}
                 </FlexItemWrapper>
             </FlexWrapper>
 
-        
             <FooterActionView 
                 handleSubmit={handleSubmit} 
                 data={dataCreated}
